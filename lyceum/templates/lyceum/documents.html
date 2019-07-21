@@ -1,0 +1,192 @@
+{% extends 'lyceum/base.html' %}
+
+{% block title %}
+Документы
+{% endblock %}
+
+{% block content %}
+    <div class="documents">
+        <div class="documen">
+        {% for document in other_document %}
+                <div class="item_in_list">
+                        <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                        <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename }}</li></a>
+                </div>
+        {% endfor %}
+        </div>
+    <div class="document">
+        <a data-toggle="collapse" href="#interior" aria-expanded="false" aria-controls="interior">
+            Внутренние документы лицея <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse" id="interior">
+            {% for papka,documents in internal_documents.items %}
+                <a class="padd" data-toggle="collapse" href="#collapse{{ papka.id }}" aria-expanded="false" aria-controls="collapse{{ papka.id }}" style="margin-bottom: 0;width:100%;float: left;">
+                    {{ papka }} <i class="fa fa-angle-down"></i>
+                </a>
+                <div class="collapse padd-x2" id="collapse{{ papka.id }}">
+                {% for document in documents %}
+                    <div class="item_in_list">
+                            <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                            <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="document">
+        <a data-toggle="collapse" href="#gostask" aria-expanded="false" aria-controls="gostask">
+            Государственное задание <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse padd" id="gostask">
+            {% for document in gos_document %}
+                <div class="item_in_list">
+                        <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                        <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="document">
+        <a data-toggle="collapse" href="#license" aria-expanded="false" aria-controls="license">
+            Лицензия на осуществление образовательной деятельности <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse padd" id="license">
+            {% for document in license_document %}
+                <div class="item_in_list">
+                        <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                        <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="document">
+        <a data-toggle="collapse" href="#local" aria-expanded="false" aria-controls="local">
+            Локальные нормативные акты <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse" id="local">
+            {% for papka,documents in provision_document.items %}
+                <a class="padd" data-toggle="collapse" href="#collapse2{{ papka.id }}" aria-expanded="false" aria-controls="collapse2{{ papka.id }}" style="margin-bottom: 0;width:100%;float: left;">
+                    {{ papka }} <i class="fa fa-angle-down"></i>
+                </a>
+                <div class="collapse padd-x2" id="collapse2{{ papka.id }}">
+                {% for document in documents %}
+                    <div class="item_in_list">
+                            <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                            <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="document">
+        <a data-toggle="collapse" href="#plat" aria-expanded="false" aria-controls="plat">
+            Документы о порядке оказания платных образовательных услуг <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse padd" id="plat">
+            {% for document in plat_documnets %}
+                <div class="item_in_list">
+                        <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                        <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if order_exec_document %}
+        <div class="document">
+            <a data-toggle="collapse" href="#regulations" aria-expanded="false" aria-controls="regulations">
+                Отчеты об исполнении предписаний органов, осуществляющих государственный контроль в сфере образования <i class="fa fa-angle-down"></i>
+             </a>
+            <div class="collapse padd" id="regulations">
+                {% for document in order_exec_document %}
+                    <div class="item_in_list">
+                        <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                        <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                    </div>}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    <div class="document">
+        <a data-toggle="collapse" href="#formation" aria-expanded="false" aria-controls="formation">
+             Порядок формирования перечня образовательных организаций осуществляющих индивидуальный отбор обучающихся <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse padd" id="formation">
+            {% for document in order_document %}
+                <div class="item_in_list">
+                    <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                    <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="document">
+        <a data-toggle="collapse" href="#rules" aria-expanded="false" aria-controls="rules">
+             Правила внутреннего трудового распорядка <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse padd" id="rules">
+            {% for document in ruls_document %}
+                <div class="item_in_list">
+                    <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                    <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="document">
+        <a data-toggle="collapse" href="#Pravorazyasnitelnye" aria-expanded="false" aria-controls="Pravorazyasnitelnye">
+             Праворазъяснительные материалы прокуратуры города Йошкар - Олы <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse padd" id="Pravorazyasnitelnye">
+            {% for document in prokurat_document %}
+                <div class="item_in_list">
+                    <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                    <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if pred_org_document %}
+        <div class="document">
+            <a data-toggle="collapse" href="#injunction" aria-expanded="false" aria-controls="injunction">
+                 Предписание органов осуществляющих государственный контроль в сфере образования <i class="fa fa-angle-down"></i>
+             </a>
+            <div class="collapse padd" id="injunction">
+                {% for document in pred_org_document %}
+                    <div class="item_in_list">
+                        <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                        <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    <div class="document">
+        <a data-toggle="collapse" href="#certificate" aria-expanded="false" aria-controls="certificate">
+             Свидетельство о государственной аккредитации <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse padd" id="certificate">
+            {% for document in certificate_document %}
+                <div class="item_in_list">
+                    <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                    <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="document">
+        <a data-toggle="collapse" href="#charter" aria-expanded="false" aria-controls="charter">
+             Устав образовательной организации <i class="fa fa-angle-down"></i>
+         </a>
+        <div class="collapse padd" id="charter">
+            {% for document in charter_document %}
+                <div class="item_in_list">
+                    <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float:left"></i>
+                    <a href="{{ document.document.url }}" open target="_blank"><li>{{ document.filename  }}</li></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

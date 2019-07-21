@@ -1,0 +1,77 @@
+{% extends 'lyceum/base.html' %}
+
+{% block title %}
+Коллектив учебного заведения
+{% endblock %}
+
+{% block content %}
+
+    <div class="scrollspy" >
+        <ul>
+            <li><a class="item item_nav_link" href="#one">Администрация</a></li>
+            <li><a class="item item_nav_link" href="#two">Педагогический состав</a></li>
+            <li><a class="item item_nav_link" href="#three">Состав воспитателей</a></li>
+        </ul>
+    </div>
+<section class="section team-section">
+<section id="one"></section>
+    <h2 style="text-align: center">Администрация</h2>
+    <p class="section-description">Администрация является одним из важнейших составляющих лицея, она обеспечивает учащихся благоприятными условиями для постяжения знаний.</p>
+    <div class="row text-xs-center">
+        {% for teacher in administrations_team %}
+            <div class="col-lg-3 mb-r person">
+                <div class="avatar" >
+                    <img src="{{ teacher.avatar.url }}" class="rounded-circle">
+                </div>
+                <br>
+                <h4>{{ teacher.surname }} {{ teacher.name }} {{ teacher.last_name }}</h4>
+                <h5>{% for position in teacher.position.all %}
+                            {{ position }}<br>
+                    {% endfor %}
+                </h5>
+                <p>{{ teacher.education }}</p>
+            <br>
+            </div>
+        {% endfor %}
+    </div>
+<section id="two"></section>
+    <h2 style="text-align: center">Педагогический состав</h2>
+    <p class="section-description">Педагогический состав, состоящий из высококвалифицированных преподователей, помогает учащимся быстро понимать и усваивать новый материал.</p>
+    <div class="row text-xs-center">
+        {% for teacher in teachers_team %}
+            <div class="col-lg-3  mb-r person" >
+                <div class="avatar" >
+                    <img src="{{ teacher.avatar.url }}" class="rounded-circle">
+                </div>
+                <br>
+                <h4>{{ teacher.surname }} {{ teacher.name }} {{ teacher.last_name }}</h4>
+                <h5>{% for subject in teacher.subjects.all %}
+                        {{ subject }}<br>
+                    {% endfor %}
+                </h5>
+                <p>{{ teacher.education }}</p>
+            </div>
+        {% endfor %}
+    </div>
+<section id="three"></section>
+     <h2 style="text-align: center">Состав воспитателей</h2>
+    <p class="section-description">Учащиеся, проживающие в общежитии, находятся под чутким руководством опытных воспитателей, которые следят за порядком, выполнением домашнего задания и благотворным учебным процессом.</p>
+    <div class="row text-xs-center">
+        {% for teacher in educators_team %}
+            <div class="col-lg-3 mb-r person" style="height:400px;">
+            <div class="avatar">
+                <img src="{{ teacher.avatar.url }}" class="rounded-circle">
+            </div>
+            <br>
+            <h4>{{ teacher.surname }} {{ teacher.name }} {{ teacher.last_name }}</h4>
+            <h5>
+                {% for position in teacher.position.all %}
+                    {{ position }}<br>
+                {% endfor %}
+            </h5>
+            <p>{{ teacher.education }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

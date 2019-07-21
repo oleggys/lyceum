@@ -1,0 +1,104 @@
+{% extends 'lyceum/base.html' %}
+
+{% block title %}
+События
+{% endblock %}
+
+{% block content %}
+
+<div class="desk_of_events">
+<div class="calendar" >
+<form action="" method="get" name="settings_of_calendar" class="settings_of_calendary">
+    {% csrf_token %}
+    <select class='select ro-select' name="year" placeholder="{{ year_now }}">
+        {% for year in years %}
+            <option>{{ year }}</option>
+        {% endfor %}
+    </select>
+    <select class='select ro-select' name="month" placeholder="{{ month_now }}">
+            {% for key, value in months.items %}
+                <option value="{{ key }}" id="option" name="month">{{ value }}</option>
+            {% endfor %}
+    </select>
+    <div class="np">
+        <div class="previous_month"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+        <div class="next_month"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+    </div>
+</form>
+<div class="week">
+    <div class="days_in_week">Пн</div>
+    <div class="days_in_week">Вт</div>
+    <div class="days_in_week">Ср</div>
+    <div class="days_in_week">Чт</div>
+    <div class="days_in_week">Пт</div>
+    <div class="days_in_week">Сб</div>
+    <div class="days_in_week">Вс</div>
+</div>
+<div name="calend" id="cal">
+{% for day in days %}
+    {% if day > 0  %}
+        <div class="day">
+                {% if  day in events %}
+                        <div class="day_date ">
+                                    <div class="round z-depth-1 hoverable" data-toggle="tooltip" data-placement="top" data-html="true" title="<div style='text-align:left;'>
+                                    {% for date,events_itday in events_in_day.items %}
+                                        {% if date == day %}
+                                            {% for event in events_itday %}
+                                                {{ event.event_begin_time|date:"H:i"  }}
+                                                {% if event.event_end_time|date:'H:i' %}
+                                                    -
+                                                {% endif %}
+                                                {{ event.event_end_time|date:'H:i' }}<br>
+                                                {{ event.event_name }}<br>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}</div>
+                                    ">
+                                        <div class="small_round">
+                                            {{ day }}
+                                        </div>
+                                    </div>
+                        </div>
+
+                {% else %}
+                    <div class="day_date ">
+                        {{ day }}
+                    </div>
+                {% endif %}
+        </div>
+    {% else %}
+        <div class="day"></div>
+    {% endif %}
+{% endfor %}
+</div>
+</div>
+</div>
+   <div class="list_of_news">
+        <div class="news_logo">Новости:</div>
+        <div class="col-lg-6 col-md-12" style="width:100%">
+            {% for key,n in news.items %}
+                     <div class="single-news" >
+                        <div class="row" >
+                            <!--Excerpt-->
+                            <div class="col-md-9" style="width:100%">
+                                <p style="margin-bottom: 0;"><strong>{{ n.pub_date|date:"d/m/Y - H:i" }}</strong></p>
+                                <p style="margin-bottom: 0;">{{ n.name }}
+                                    {% if n.content != '' %}
+                                        <i class="fa fa-angle-down" id="news_addition" value="{{ key }}" data-toggle="collapse" href="#collapse{{ key }}" aria-expanded="false" aria-controls="collapse{{ key }}"></i>
+                                    {% endif %}
+                                </p>
+                            <div class="collapse" id="collapse{{ key }}" >
+                                {{ n.content }}
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+            {% endfor %}
+        </div>
+    </div>
+<script>
+news_addition();
+</script>
+{% endblock %}

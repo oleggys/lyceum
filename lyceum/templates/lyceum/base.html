@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/tether.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/mdb.min.js' %}"></script>
+  <script src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/js.js' %}"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, maximum-scale=1" />
+  <script src="http://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+  </head>
+  <body>
+      <header class="z-depth-1">
+        <div class="mwidth">
+            <div class="header_logo">
+                <a href={% url 'index' %}>Политехнический лицей-интернат</a>
+            </div>
+            <div class="header_navbar" >
+                <a href="{% url 'team' %}"><nav>
+                  Коллектив
+                </nav></a>
+                <a href="{% url 'events' %}"><nav>
+                  События
+                </nav></a>
+                <a href="{% url 'incom' %}"><nav>
+                  Для поступающих
+                </nav></a>
+                <a href="{% url 'documents' %}"><nav>
+                  Документы
+                </nav></a>
+                <a href="{% url 'offers' %}"><nav>
+                  Предложения / Жалобы
+                </nav></a>
+                <button id="demo-menu-lower-right" class="menu mdl-button mdl-js-button mdl-button--icon" >
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect menu_sl" for="demo-menu-lower-right">
+                   <a href="{% url 'team' %}"><li class="mdl-menu__item">Коллектив</li></a>
+                  <a href="{% url 'events' %}"><li class="mdl-menu__item">События</li></a>
+                  <a href="{% url 'incom' %}"><li class="mdl-menu__item">Для поступающих</li></a>
+                  <a href="{% url 'documents' %}"><li class="mdl-menu__item">Документы</li></a>
+                  <a href="{% url 'offers' %}"><li class="mdl-menu__item">Предложения / Жалобы</li></a>
+                </ul>
+            </div>
+        </div>
+      </header>
+      {% block video %}
+      {% endblock %}
+      <div class="content">
+      <div class="mwidth">
+              {% block content %}
+
+              {% endblock %}
+      </div>
+      </div>
+      <footer class="page-footer #293a48 center-on-small-only" >
+          <div class="container-fluid mwidth">
+              <div class="row">
+                  <div class="col-md-6">
+                      <h5 class="title">Место расположения</h5>
+                      <p>Республика Марий Эл, г. Йошкар-Ола, ул. Карта Либкнехта д.53</p>
+                  </div>
+                  <div class="col-md-6">
+                      <h5 class="title">Контакты</h5>
+                      <ul>
+                          <li><a href="https://vk.com/pro_lyceum" target="_blank">Страница в vk.com</a></li>
+                          <li>Приемная директора: 8(8362)-223332</li>
+                          <li>Учительская: 8(8362)-223263</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div class="footer-copyright">
+              <div class="container-fluid">
+                  © 2017 Copyright: <a href="">Политехнический лицей-интернат</a>
+              </div>
+          </div>
+      </footer>
+  <script>calendar()</script>
+  <div style="display: none">Сайт создан Гусевым Олегом rewq5558@mail.ru</div>
+  </body>
+</html>

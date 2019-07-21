@@ -1,0 +1,224 @@
+{% extends 'lyceum/base.html' %}
+
+{% block title %}
+ГБОУ РМЭ "Политехнический лицей-интернат"
+{% endblock %}
+
+{% block video %}
+    <div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#video-carousel-example" data-slide-to="0" class="active"></li>
+        <li data-target="#video-carousel-example" data-slide-to="1"></li>
+        <li data-target="#video-carousel-example" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+    <div class="carousel-caption video_text">
+        <div class="">
+            <h3 class="h3-responsive">&laquo;С гордостью о прошлом, с уверенностью о будущем&raquo;</h3>
+            <p>Уже 25 лет</p>
+        </div>
+    </div>
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+        <!--First slide-->
+        <div class="carousel-item active hm-black-light">
+            <!--Mask color-->
+            <div class="view">
+                <!--Video source-->
+                <video class="video-fluid" autoplay loop>
+                    <source src="http://mdbootstrap.com/img/video/Strum-Away.mp4" type="video/mp4" />
+                </video>
+                <div class="full-bg-img"></div>
+            </div>
+
+        </div>
+        <!--/First slide-->
+
+        <!--Second slide-->
+        <div class="carousel-item">
+            <!--Mask color-->
+            <div class="view hm-black-light">
+                <!--Video source-->
+                <video class="video-fluid" autoplay loop>
+                    <source src="http://mdbootstrap.com/img/video/Beach-Ball.mp4" type="video/mp4" />
+                </video>
+                <div class="mask"></div>
+            </div>
+        </div>
+        <!--/Second slide-->
+
+        <!--Third slide-->
+        <div class="carousel-item">
+            <!--Mask color-->
+            <div class="view hm-black-light">
+                <!--Video source-->
+                <video class="video-fluid" autoplay loop>
+                    <source src="http://mdbootstrap.com/img/video/Nature-Sunset.mp4" type="video/mp4" />
+                </video>
+                <div class="mask"></div>
+            </div>
+        </div>
+        <!--/Third slide-->
+    </div>
+    <!--/.Slides-->
+
+    <!--Controls-->
+    <a class="left carousel-control" href="#video-carousel-example" role="button" data-slide="prev">
+        <span class="icon-prev" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#video-carousel-example" role="button" data-slide="next">
+        <span class="icon-next" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+</div>
+{% endblock %}
+{% block content %}
+
+<section class="section extra-margins" id="plus">
+    <h1 class="section-heading">Почему мы лучшие?</h1>
+    <p class="section-description">Политехнический лицей-интернат является лучшим местом для получения знаний: наши выпускники поступают в вузы Москвы, Санкт-Петербурга, Казани и т.д. Наше образовательное учреждение входит в топ 500 лучших школ России.</p>
+    <div class="row">
+        <div class="col-md-5 mb-r">
+            <div class="view overlay hm-white-slight">
+                <img src="http://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(80).jpg">
+                <a>
+                    <div class="mask"></div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-7 mb-r">
+            <a class="amber-text"><h5><i class="fa fa-diamond"></i>Учебный процесс</h5></a>
+            <h4>Педагоги с большим опытом работы всегда рады помочь.</h4>
+            <p>В нашем учебном заведении работают лучшие преподаватели, которые предоставляют наилучшую подачу знаний.</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-7 mb-r">
+            <a class="indigo-text"><h5><i class="fa fa-book"></i>Знания</h5></a>
+            <h4>Мы даём высококачественные знания.</h4>
+            <p>У нас вы получите огромный базис знаний от высококвалифицированных педагогов для поступления в вуз.</p>
+        </div>
+        <div class="col-md-5 mb-r">
+            <div class="view overlay hm-white-slight">
+                <img src="http://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(91).jpg">
+                <a>
+                    <div class="mask"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-5 mb-r">
+            <div class="view overlay hm-white-slight">
+                <img src="http://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(32).jpg">
+                <a>
+                    <div class="mask"></div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-7 mb-r">
+            <a  class="pink-text"><h5><i class="fa fa-coffee"></i>Свободной время</h5></a>
+            <h4>У нас вы сможете рационально распределить своё время.</h4>
+            <p>В нашей образовательной организации проводятся различные мероприятия, где вы сможете раскрыть таланты, о которых вы даже и не знали.</p>
+        </div>
+    </div>
+</section>
+<section class="section mb-4" id="message">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-block">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-header mdb-color form_contact">
+                            <h3 style="padding-top: 2%;"><i class="fa fa-envelope"></i> Напишите нам:</h3>
+                        </div>
+                        <br>
+                        <p style="font-size: 1.2em;text-align: center">Мы даём детям наилучшие возможности для их развития.</p>
+                        <br>
+
+                        <!--Body-->
+                        <div class="md-form">
+                            <i class="fa fa-user prefix"></i>
+                            <input type="text" id="form3" class="form-control" name="send_name" maxlength="60">
+                            <label for="form3">Ваше имя</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fa fa-envelope prefix"></i>
+                            <input type="email" id="form2" class="form-control" name="send_email" maxlength="30">
+                            <label for="form2">Ваш email</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fa fa-tag prefix"></i>
+                            <input type="text" id="form32" class="form-control" name="send_topic" maxlength="40">
+                            <label for="form32">Тема</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fa fa-pencil prefix"></i>
+                            <textarea type="text" id="form8" class="md-textarea" name="send_mail_text"></textarea>
+                            <label for="form8">Сообщение</label>
+                        </div>
+                        <div class="text-xs-center">
+                            <button type="button" class="btn btn-mdb" name="send_email" id="alert-target">Отправить</button>
+                        </div>
+                    </form>
+                    <div class="alert animated ">Сообщение отправленно!</div>
+                </div>
+
+            </div>
+            <!--/Form with header-->
+
+        </div>
+        <!--/First column-->
+
+        <!--Second column-->
+        <br>
+        <br>
+        <div class="col-md-7">
+            <div id="map" class="z-depth-1-half map-container" style="height: 460px; width:100%;"></div>
+            <br>
+
+            <div class="row text-xs-center under_mup_infomation">
+                <div class="col-md-4 ">
+                    <div class="btn-floating btn-small mdb-color z-depth-2"><i class="fa fa-map-marker"></i></div>
+                    <p>Йошкар-Ола, Карта Либкнехта д.53</p>
+                    <p>Республика Марий Эл</p>
+                </div>
+                <div class="col-md-4 " >
+                    <div class="btn-floating btn-small mdb-color z-depth-2"><i class="fa fa-phone"></i></div>
+                    <p>8(8362)-******</p>
+                    <p>Пн - Пт, 8:00-18:00</p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="btn-floating btn-small mdb-color z-depth-2"><i class="fa fa-envelope"></i></div>
+                    <p>****@mari-el.ru</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+     <script>
+     send_mail();
+   // tran_header();
+  var map;
+
+    DG.then(function () {
+        map = DG.map('map', {
+            center: [56.641249, 47.954773],
+            zoom: 17
+        });
+        DG.marker([56.641249, 47.954773]).addTo(map).bindPopup('Лучшая образовательная организация в республике Марий Эл');;
+    });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends 'lyceum/base.html' %}
+
+{% block title %}
+Предложения и жалобы
+{% endblock %}
+
+{% block content %}
+    <div class="make_offer_com">
+            {% for key,war in warnings.items %}
+                <div class="warning_o" style="display: none" name="{{ key }}">{{ war }}</div>
+            {% endfor %}
+            <section class="section">
+                 <h2 style="text-align: center;color:rgba(0,0,0,0.6)">Пожелания</h2>
+                    <p class="section-description">Сдесь вы можете оставить свои пожелания для улучшения работы образовательного учреждения, а также для улучшения работы сайта. </p>
+                <section>
+                    <div class="comments-list">
+                        {% for offer in offers %}
+                            <div class="row " style="float: none; margin: 0; margin-bottom: 2%;">
+                                <div class="col-sm-2 col-xs-12"  >
+                                    <i class="fa fa-user z-depth-1 fa-5x" style="border-radius: 50%;width:70%;padding: 10%; text-align: center; float:right;"></i>
+                                </div>
+                                <div class="col-sm-10 col-xs-12">
+                                    <a><h3 class="user-name">{{ offer.name }}</h3></a>
+                                    <div class="card-data">
+                                        <ul>
+                                            <li class="comment-date"><i class="fa fa-clock-o"></i> {{ offer.pub_date|date:'d/m/y - G:i' }}</li>
+                                        </ul>
+                                    </div>
+                                    <p class="comment-text">{{ offer.text }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </section>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-9" style="margin: auto; float: none">
+                        <form action="{% url 'make_offer' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <div class="md-form">
+                                            <input type="text" id="o_name" name="o_name" class="form-control warning" value="{{ o_name }}">
+                                            <label for="o_name" class="">Ваше ФИО</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <div class="md-form">
+                                            <input type="email" id="o_email" name="o_email" class="form-control" value="{{ o_email }}">
+                                            <label for="o_email" class="">Ваш email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <div class="md-form">
+                                            <input type="text" id="o_topic" name="o_topic" class="form-control" maxlength="30" value="{{ o_topic }}">
+                                            <label for="form41" class="">Тема предложения</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <div class="md-form">
+                                            <input type="text" id="tel" name="tel" class="form-control" value="{{ o_phone }}">
+                                            <label for="tel" class="">Ваш номер</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="md-form">
+                                        <textarea type="text" id="o_text" name="o_text" class="md-textarea">{{ o_text }}</textarea>
+                                        <label for="o_text">Ваше предложение</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs-center">
+                                <button class="btn btn-primary">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+    </div>
+    <br>
+    <div class="make_offer_com">
+     {% for key,war in warnings_c.items %}
+        <div class="warning_c" style="display: none" name="{{ key }}">{{ war }}</div>
+    {% endfor %}
+        <section class="section">
+             <h2 style="text-align: center;color:rgba(0,0,0,0.6);">Жалобы</h2>
+            <p class="section-description">Сдесь вы можете оставить свои жалобы на образовательное учреждение. Вашу жалобу рассмотрят в ближайшее время и применят необходимые меры.</p>
+            <section>
+                <div class="comments-list">
+                    {% for complaint in complaints %}
+                        <div class="row " style="float: none; margin: 0; margin-bottom: 3%">
+                            <div class="col-sm-2 col-xs-12"  >
+                                <i class="fa fa-user z-depth-1 fa-5x" style="border-radius: 50%;width:70%;padding: 10%; text-align: center; float:right;"></i>
+                            </div>
+                            <div class="col-sm-10 col-xs-12">
+                                <a><h3 class="user-name">{{ complaint.name }}</h3></a>
+                                <div class="card-data">
+                                    <ul>
+                                        <li class="comment-date"><i class="fa fa-clock-o"></i> {{ complaint.pub_date|date:'d/m/y - G:i' }}</li>
+                                    </ul>
+                                </div>
+                                <p class="comment-text">{{ complaint.text }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </section>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-9" style="margin: auto; float: none">
+                    <form action="{% url 'make_com' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="md-form">
+                                    <div class="md-form">
+                                        <input type="text" id="c_name" name="c_name" class="form-control" value="{{ c_name }}">
+                                        <label for="c_name" class="">Ваше ФИО</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="md-form">
+                                    <div class="md-form">
+                                        <input type="email" id="c_email" name="c_email" class="form-control" value="{{ c_email }}">
+                                        <label for="c_email" class="">Ваш email</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="md-form">
+                                    <div class="md-form">
+                                        <input type="text" id="c_topic" name="c_topic" class="form-control" maxlength="30" value="{{ c_topic }}">
+                                        <label for="c_topic" class="">Тема жалобы</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="md-form">
+                                    <div class="md-form">
+                                        <input type="text" id="tel2" name="tel2" class="form-control" value="{{ c_phone }}">
+                                        <label for="tel2" class="">Ваш номер</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form">
+                                    <textarea type="text" id="c_text" name="c_text" class="md-textarea">{{ c_text }}</textarea>
+                                    <label for="c_text">Ваше жалоба</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-xs-center">
+                            <button class="btn btn-primary">Отправить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

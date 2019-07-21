@@ -1,0 +1,1 @@
+default_app_config = "files_in_com.apps.FilesInComConfig"
